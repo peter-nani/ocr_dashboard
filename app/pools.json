@@ -1,0 +1,6 @@
+{
+  "system_temp": {
+    "display_name": "System Temp (/tmp)",
+    "directory_path": "/tmp"
+  }
+}

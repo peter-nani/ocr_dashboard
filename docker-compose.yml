@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  dashboard_web:
+    build:
+      context: .
+      dockerfile: inline_dockerfile
+    container_name: dashboard_web_app
+    restart: always
+    ports:
+      - "8002:8000"
+    environment:
+      - JWT_SECRET=super-secret-control-room-key-9912
+    volumes:
+      - ./app:/app
+      - ./data:/app/data
+      # Mount the entire parent directory containing your subfolders
+      - /root/ocr_extraction/processed_history:/data:ro
+      - /tmp:/tmp
+    working_dir: /app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
